@@ -1,0 +1,481 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  // rotas e URLs limpas (remove a extensão .html das páginas; ex: /about.html -> /about)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#cleanurls
+  "cleanUrls": true,
+
+  // barras no final (força o uso de barras no final das URLs ou redireciona para removê-las)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#trailingslash
+  "trailingSlash": false,
+
+  // substituições para configurações de build (substitui as configurações do painel)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#buildcommand
+  "buildCommand": "npm run build",
+
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#devcommand
+  "devCommand": "npm run dev",
+
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#installcommand
+  "installCommand": "npm install --legacy-peer-deps",
+
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#outputdirectory
+  "outputDirectory": "dist",
+
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#ignorecommand
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
+
+  // preset de framework (força um preset de build específico; ex: nextjs, vite, etc. deixe vazio ou null para "Other")
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#framework
+  "framework": null,
+
+  // seleção do motor de execução (define a versão do Bun se estiver utilizando a execução Bun)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#bunversion
+  "bunVersion": "1.x",
+
+  // configurações de região (força as serverless functions a executarem em regiões específicas)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#regions
+  // https://vercel.com/docs/regions#region-list
+  // somente disponível em planos Pro e Enterprise
+  "regions": ["gru1"],
+
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#functionfailoverregions
+  // somente disponível em planos Enterprise
+  "functionFailoverRegions": ["pdx1"],
+
+  // redirecionamentos em massa (importa redirecionamentos via arquivo CSV hospedado na sua aplicação)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#bulkredirectspath
+  // somente disponível e com limites diferentes em planos Pro e Enterprise
+  "bulkRedirectsPath": "/redirects.csv",
+
+  // redirecionamentos padrão (redirecionamentos comuns com
+  // alteração na barra de endereços do navegador)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#redirects
+  "redirects": [
+    {
+      // parâmetros básicos de correspondência
+      "source": "/old-blog/:slug",
+      "destination": "/new-blog/:slug",
+
+      // controle do código de status (não pode ser utilizado junto com a propriedade permanent!)
+      "statusCode": 308,
+
+      // correspondência condicional baseada na presença (has) de propriedades
+      "has": [
+        {
+          // corresponde quando um cabeçalho específico existe com um valor exato
+          "type": "header",
+          "key": "X-User-Tier",
+          "value": "premium"
+        },
+        {
+          // corresponde quando um parâmetro de busca específico está na URL (ex: ?promo=active)
+          "type": "query",
+          "key": "promo",
+          "value": "active"
+        },
+        {
+          // corresponde quando um cookie específico está presente
+          "type": "cookie",
+          "key": "session_id"
+        },
+        {
+          // corresponde quando o valor de um cabeçalho tem um prefixo (pre) e sufixo (suf) específicos
+          "type": "header",
+          "key": "X-Custom-Header",
+          "value": {
+            "pre": "valid",
+            "suf": "value"
+          }
+        }
+      ],
+
+      // correspondência condicional baseada na ausência (missing) de propriedades
+      "missing": [
+        {
+          // só redireciona se este cookie específico estiver ausente da requisição
+          "type": "cookie",
+          "key": "opt_out"
+        },
+        {
+          // só redireciona se esta chave de cabeçalho não estiver presente
+          "type": "header",
+          "key": "X-Bypass-Redirect"
+        }
+      ]
+    }
+  ],
+
+  // reescritas (encaminha as requisições internamente
+  // sem alterar a URL do navegador)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#rewrites
+  "rewrites": [
+    {
+      // propriedades obrigatórias
+      "source": "/api-proxy/:path*",
+      "destination": "https://api.external-service.com/:path*",
+
+      // correspondência condicional baseada na presença (has)
+      "has": [
+        {
+          // corresponde quando um cabeçalho específico está presente com um valor exato
+          "type": "header",
+          "key": "X-Allow-Proxy",
+          "value": "true"
+        },
+        {
+          // corresponde quando um parâmetro de busca específico existe na URL
+          "type": "query",
+          "key": "version",
+          "value": "v2"
+        },
+        {
+          // corresponde com base no domínio do host
+          "type": "host",
+          "value": "subdomain.yoursite.com"
+        },
+        {
+          // corresponde à presença de um cookie (se "value" for omitido, qualquer valor corresponde)
+          "type": "cookie",
+          "key": "session_id"
+        },
+        {
+          // corresponde a um cabeçalho usando propriedades de prefixo (pre) e sufixo (suf)
+          "type": "header",
+          "key": "X-Custom-Header",
+          "value": {
+            "pre": "premium-",
+            "suf": "-user"
+          }
+        }
+      ],
+
+      // correspondência condicional baseada na ausência (missing)
+      "missing": [
+        {
+          // só reescreve se este cookie específico não for encontrado
+          "type": "cookie",
+          "key": "bypass_proxy"
+        },
+        {
+          // só reescreve se este parâmetro de busca específico não estiver na URL
+          "type": "query",
+          "key": "legacy"
+        }
+      ]
+    }
+  ],
+
+  // cabeçalhos personalizados (adiciona segurança, CORS ou cabeçalhos de cache em rotas específicas)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#headers
+  "headers": [
+    // segurança (políticas legado + modernas)
+    {
+      "source": "/(.*)",
+      "headers": [
+        // protege visitantes de ataques "clickjacking" e "MIME-sniffing"
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        // impede que o site seja carregado em um frame de outro site
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        // proteção legado contra injeção de scripts (suplantado por CSP)
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        // protege contra ataques XSS e injeção de scripts por meio
+        // de política de segurança de conteúdo (CSP)
+        {
+          "key": "Content-Security-Policy",
+          // default-src 'self'   -> padrão: só permite carregar
+          // recursos do próprio domínio
+          // script-src 'self'    -> javascript: só permite
+          // scripts do seu domínio (bloqueia scripts inline de terceiros)
+          // style-src 'self'     -> css: só permite carregar
+          // folhas de estilo do seu próprio domínio
+          // img-src 'self' data: -> imagens: permite imagens
+          // locais e imagens inline codificadas em Base64 (data:)
+          // object-src 'none'    -> bloqueia plugins
+          // legados inseguros como Flash ou Java Applets
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none';"
+        }
+      ]
+    },
+
+    // headers gerais para arquivos específicos
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          // =========================================================================
+          // diretivas de cache-control disponíveis (explicação completa):
+          // =========================================================================
+          // -- visibilidade do cache --
+          // public:               -> permite que tanto o navegador do usuário quanto proxies intermediários (como a CDN da Vercel) armazenem o arquivo em cache.
+          // private:              -> indica que a resposta é destinada a um único usuário. Apenas o navegador do usuário pode salvar em cache; CDNs/proxies intermediários são proibidos de fazer cache.
+          //
+          // -- controle de expiração --
+          // max-age=<segundos>:   -> define o tempo máximo (em segundos) que o navegador do usuário considerará este arquivo "fresco" antes de revalidar com o servidor.
+          // s-maxage=<segundos>:  -> define o tempo máximo de cache estritamente para CDNs e caches compartilhados (como a CDN da Vercel). Sobrescreve max-age em proxies.
+          //
+          // -- revalidação e comportamento --
+          // must-revalidate:      -> força o navegador a verificar estritamente com o servidor de origem se há alterações no arquivo assim que ele expirar (o navegador não pode servir conteúdo expirado se perder a conexão).
+          // proxy-revalidate:     -> semelhante ao must-revalidate, mas se aplica apenas a caches compartilhados (como proxies e CDNs).
+          // no-cache:             -> força o navegador a enviar uma requisição de revalidação ao servidor antes de usar qualquer cópia em cache (o cache ainda armazena o arquivo, mas valida toda vez).
+          // no-store:             -> proíbe completamente qualquer cache de salvar a resposta (navegador ou CDN). Útil para dados altamente sensíveis.
+          // no-transform:         -> proíbe intermediários (proxies e CDNs) de modificar ou otimizar o conteúdo do arquivo (como redimensionar imagens ou compactar arquivos).
+          //
+          // -- otimizações modernas --
+          // immutable:            -> indica que o conteúdo do arquivo nunca vai mudar durante sua vida útil (ex: arquivos com hashes como script.a1b2c3.js). O navegador nunca tentará revalidar.
+          // stale-while-revalidate=<segundos>: -> permite que a CDN sirva instantaneamente uma versão expirada (stale) em cache ao usuário enquanto, em segundo plano, busca e atualiza o arquivo com a nova versão do servidor de origem.
+          // stale-if-error=<segundos>:        -> permite que o cache sirva conteúdo expirado se o servidor de origem estiver offline ou retornando um erro (como erro 500 ou 502).
+          // =========================================================================
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+
+    // cache curto (60 segundos por exemplo) para páginas que mudam frequentemente ou precisam de alta confiabilidade
+    {
+      "source": "/policy",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=30"
+        }
+      ]
+    },
+
+    // configuração de CORS (permite que outros sites acessem
+    // recursos compartilhados)
+    {
+      "source": "/shared-assets/(.*)",
+      "headers": [
+        // origens permitidas
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        // métodos - verbos - HTTP permitidos
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, OPTIONS"
+        }
+      ]
+    },
+
+    // correspondência condicional demonstrando todas as
+    // opções expressivas de objetos de valor
+    {
+      "source": "/api/:path*",
+      "has": [
+        {
+          // verificação de igualdade exata (eq)
+          "type": "header",
+          "key": "X-Action",
+          "value": {
+            "eq": "bypass-cache"
+          }
+        },
+        {
+          // verificação de desigualdade (neq)
+          "type": "query",
+          "key": "mode",
+          "value": {
+            "neq": "development"
+          }
+        },
+        {
+          // verificação de inclusão em uma lista (inc)
+          "type": "header",
+          "key": "X-Role",
+          "value": {
+            "inc": ["admin", "super-user", "editor"]
+          }
+        },
+        {
+          // verificação de não inclusão em uma lista (ninc)
+          "type": "cookie",
+          "key": "tier",
+          "value": {
+            "ninc": ["restricted", "suspended"]
+          }
+        },
+        {
+          // verificação de prefixo (pre) e sufixo (suf) simultaneamente
+          "type": "header",
+          "key": "X-Custom-Token",
+          "value": {
+            "pre": "secret-",
+            "suf": "-prod"
+          }
+        },
+        {
+          // verificação usando correspondência por expressão regular (re)
+          "type": "header",
+          "key": "User-Agent",
+          "value": {
+            "re": "Chrome/[0-9]+"
+          }
+        },
+        {
+          // comparações numéricas (gt, gte, lt, lte)
+          // (comumente comparando strings de cabeçalho
+          // numéricas como X-Version, Content-Length, etc.)
+          "type": "header",
+          "key": "X-API-Version",
+          "value": {
+            "gt": 2,
+            "gte": 3,
+            "lt": 10,
+            "lte": 5
+          }
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Validation-Passed",
+          "value": "true"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+
+    // condições do bloco missing (aplica cabeçalhos somente
+    // quando certos elementos estão ausentes)
+    {
+      "source": "/public/:path*",
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "visitor_opt_out"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Tracked-Visitor",
+          "value": "active"
+        }
+      ]
+    }
+  ],
+
+  // configuração de funções (define alocações de recursos para
+  // serverless ou edge functions)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#functions
+  "functions": {
+    // corresponde a uma única função específica
+    "api/test.js": {
+      // runtime: define runtimes personalizados da comunidade (ex: php, rust, go, python, etc.)
+      "runtime": "vercel-php@0.5.2",
+      // memory: tamanho em megabytes (MB) entre 1024 e 3009.
+      // nota sobre fluid compute: se o fluid compute estiver ativo no projeto, a memória deve ser configurada pelo painel de controle, e não aqui.
+      "memory": 1024,
+      // maxDuration: limite de execução antes do timeout (máximo de 60s no hobby, 300s no pro e 900s no enterprise)
+      "maxDuration": 30
+    },
+
+    // corresponde a múltiplos arquivos usando padrões glob recursivos (ex: todas as apis typescript)
+    "api/**/*.ts": {
+      // supportsCancellation: recurso apenas para node.js; cancela a execução se o cliente abortar a requisição antes do término
+      "supportsCancellation": true,
+      // includeFiles: inclui arquivos estáticos dentro do bundle de execução da função
+      // (não suportado em next.js; utilize a diretiva outputFileTracingIncludes no next.config.js)
+      "includeFiles": "templates/*.html",
+      // excludeFiles: exclui arquivos específicos para diminuir o tamanho final do bundle de deploy
+      // (não suportado em next.js; utilize a diretiva outputFileTracingExcludes no next.config.js)
+      "excludeFiles": "assets/large-videos/**",
+      // regions: força as funções a executarem estritamente em regiões de servidor geográficas específicas
+      "regions": ["cdg1", "iad1"]
+    },
+
+    // corresponde a rotas isr (incremental static regeneration) ou roteamento avançado
+    "src/pages/isr/**/*": {
+      "maxDuration": 10,
+      "regions": ["sfo1"],
+      // functionFailoverRegions: define regiões passivas para failover de contingência durante interrupções de serviço
+      // nota de plano: recurso exclusivo para planos enterprise
+      "functionFailoverRegions": ["pdx1"]
+    }
+  },
+
+  // cron jobs (agenda chamadas periódicas em background nos
+  // seus endpoints serverless)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#crons
+  "crons": [
+    {
+      "path": "/api/hourly-cleanup",
+      "schedule": "0 * * * *"
+    }
+  ],
+
+  // otimização de imagens (configuração do comportamento
+  // da api de otimização nativa de imagens)
+  // doc: https://vercel.com/docs/project-configuration/vercel-json#images
+  "images": {
+    // largura de imagens permitidas na otimização (a api lança erro se o parâmetro w não estiver listado aqui)
+    "sizes": [64, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048],
+
+    // qualidades de imagens permitidas (1 a 100). a
+    // api lança erro se o parâmetro q não constar nesta lista
+    "qualities": [25, 50, 75, 90, 100],
+
+    // formatos de imagem suportados na otimização
+    "formats": ["image/avif", "image/webp"],
+
+    // tempo mínimo de cache (em segundos) mantido para as imagens geradas
+    "minimumCacheTTL": 60,
+
+    // caminhos locais de imagens permitidos para otimização
+    "localPatterns": [
+      {
+        "pathname": "/assets/images/**",
+        "search": ""
+      },
+      {
+        "pathname": "/uploads/**"
+      }
+    ],
+
+    // domínios externos autorizados a terem imagens otimizadas
+    // pelo projeto (substitui a propriedade legada domains)
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "images.example.com",
+        "port": "",
+        "pathname": "/cdn-images/**",
+        "search": ""
+      },
+      {
+        "protocol": "https",
+        "hostname": "cdn.external-service.com"
+      },
+      {
+        "protocol": "https",
+        "hostname": "**.cloudinary.com",
+        "pathname": "/v1/**"
+      }
+    ],
+
+    // permite o upload de imagens svg
+    "dangerouslyAllowSVG": false,
+
+    // política de segurança de conteúdo das imagens otimizadas
+    // para mitigar scripts embutidos
+    "contentSecurityPolicy": "default-src 'self'; script-src 'none'; sandbox;",
+
+    // comportamento de exibição (inline exibe diretamente
+    // no navegador, attachment força download)
+    "contentDispositionType": "inline"
+  }
+}
