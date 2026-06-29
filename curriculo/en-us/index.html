@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thiago Ribeiro Silva — Resume</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{
+      --cor-fundo:#ffffff;
+      --cor-papel:#f6f8fb;
+      --cor-texto:#1a2230;
+      --cor-texto-suave:#5b6678;
+      --cor-destaque:#1f4e8c;          /* azul corporativo (engenharia/aeroespacial) */
+      --cor-destaque-claro:#eaf1fb;
+      --cor-borda:#e2e7ef;
+      --largura-maxima:820px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--cor-papel);
+      color:var(--cor-texto);
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+    .folha{
+      max-width:var(--largura-maxima);
+      margin:32px auto;
+      background:var(--cor-fundo);
+      border:1px solid var(--cor-borda);
+      border-radius:12px;
+      padding:48px 52px;
+      box-shadow:0 10px 40px -20px rgba(31,78,140,.25);
+    }
+    /* cabeçalho */
+    .cabecalho{ border-bottom:3px solid var(--cor-destaque); padding-bottom:18px; margin-bottom:22px; }
+    .cabecalho h1{ margin:0; font-size:2.1rem; letter-spacing:-.01em; color:var(--cor-texto); }
+    .cargo{ margin:4px 0 14px; color:var(--cor-destaque); font-weight:600; font-size:1.05rem; }
+    .contato{ display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.9rem; color:var(--cor-texto-suave); }
+    .contato a{ color:var(--cor-texto-suave); text-decoration:none; }
+    .contato a:hover{ color:var(--cor-destaque); }
+    .contato i{ color:var(--cor-destaque); margin-right:5px; }
+    /* seções */
+    section{ margin-top:24px; }
+    section h2{
+      font-size:.82rem; text-transform:uppercase; letter-spacing:.09em;
+      color:var(--cor-destaque); margin:0 0 12px; padding-bottom:6px;
+      border-bottom:1px solid var(--cor-borda);
+    }
+    .resumo{ color:var(--cor-texto); font-size:.98rem; }
+    /* experiência / formação */
+    .item{ margin-bottom:16px; }
+    .item-topo{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; }
+    .item-titulo{ font-weight:700; }
+    .item-org{ color:var(--cor-destaque); font-weight:600; }
+    .item-periodo{ color:var(--cor-texto-suave); font-size:.85rem; white-space:nowrap; }
+    .item ul{ margin:7px 0 0; padding-left:18px; }
+    .item li{ margin:3px 0; font-size:.93rem; }
+    .placeholder{ color:#b03a2e; font-weight:600; }    /* destacar o que falta confirmar */
+    /* habilidades */
+    .grupo-skill{ margin-bottom:8px; font-size:.93rem; }
+    .grupo-skill b{ color:var(--cor-texto); }
+    .linha-curta{ font-size:.93rem; }
+    footer{ margin-top:26px; padding-top:14px; border-top:1px solid var(--cor-borda); font-size:.82rem; color:var(--cor-texto-suave); text-align:center; }
+    /* responsivo */
+    @media (max-width:600px){ .folha{ padding:30px 22px; margin:14px; } .cabecalho h1{ font-size:1.7rem; } }
+    /* impressão / salvar como PDF */
+    @media print{
+      body{ background:#fff; }
+      .folha{ margin:0; border:0; box-shadow:none; border-radius:0; padding:0 8mm; max-width:none; }
+      a{ color:var(--cor-texto) !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="folha">
+    <header class="cabecalho">
+      <h1>Thiago Ribeiro Silva</h1>
+      <div class="cargo">Control &amp; Automation Engineer · Solutions Developer</div>
+      <div class="contato">
+        <span><i class="fas fa-envelope"></i><a href="mailto:thribsilva@gmail.com">thribsilva@gmail.com</a></span>
+        <span><i class="fas fa-globe"></i><a href="https://thiagoribeirosilva.vercel.app" target="_blank" rel="noopener">thiagoribeirosilva.vercel.app</a></span>
+        <span><i class="fas fa-location-dot"></i>São Paulo, Brazil</span>
+        <span><i class="fas fa-phone"></i><span class="placeholder">[phone — confirm]</span></span>
+        <span><i class="fab fa-linkedin"></i><span class="placeholder">[LinkedIn — confirm]</span></span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Professional summary</h2>
+      <p class="resumo">
+        Control and Automation Engineer and solutions developer, with a strong telecommunications and
+        networking background. I work across servers, networks, cloud, automation, databases, security and
+        applications. Currently an IT Analyst at a telecom operator and technical partner at MyKey. Fluent in
+        English and Portuguese.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="item">
+        <div class="item-topo">
+          <span><span class="item-titulo">Technical Partner — Solutions Developer</span> ·
+            <span class="item-org">MyKey Soluções</span></span>
+          <span class="item-periodo"><span class="placeholder">[start — confirm]</span> – Present</span>
+        </div>
+        <ul>
+          <li><span class="placeholder">[describe in your own words what you do on the technical side — confirm]</span></li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-topo">
+          <span><span class="item-titulo">IT Analyst / Service Provider</span> ·
+            <span class="item-org">New Help Telecomunicações</span> — Taboão da Serra/SP</span>
+          <span class="item-periodo"><span class="placeholder">[start — confirm]</span> – Present</span>
+        </div>
+        <ul>
+          <li>Installation, maintenance and monitoring of network connections; routing and switching; fiber optics / GPON, radio, Wi-Fi, Ethernet, Mikrotik.</li>
+          <li>Physical and cloud asset management; documentation writing and revision; process improvement.</li>
+          <li>Technical support for customers and coworkers; customer-facing social media.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-topo">
+          <span><span class="item-titulo">Control and Automation Engineering</span> ·
+            <span class="item-org">UNIP</span> — São José dos Campos/SP</span>
+          <span class="item-periodo"><span class="placeholder">[year — confirm]</span></span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-topo">
+          <span><span class="item-titulo">Electromechanics Technician</span></span>
+          <span class="item-periodo">2011</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="grupo-skill"><b>Solutions developer across:</b> servers · system-integration APIs · cloud · operating systems · computer networks · automation · applications · databases · security · content creation · organization &amp; maintainability</div>
+      <div class="grupo-skill"><b>Languages &amp; tools:</b> JavaScript, Python, C#, Java, PHP, C, HTML &amp; CSS, SQL / PostgreSQL, Git, Arduino, MATLAB, AutoCAD 2D/3D</div>
+      <div class="grupo-skill"><b>Networking &amp; telecom:</b> routing/switching, fiber optics, GPON, Mikrotik, radio, Wi-Fi, Ethernet, CLI</div>
+      <div class="grupo-skill"><b>Engineering:</b> control &amp; automation, electromechanics, advanced MS Office, technical writing</div>
+    </section>
+
+    <section>
+      <h2>Certifications &amp; courses</h2>
+      <div class="linha-curta">Cisco CCNA R/S (200-120 &amp; 200-125) · Hardware assembly &amp; maintenance · AutoCAD 2D/3D · Electromechanics Technician (2011)</div>
+    </section>
+
+    <section>   
+      <h2>Languages</h2>
+      <div class="linha-curta">Portuguese (native) · English (fluent)</div>
+    </section>
+
+    <footer>Available in <a href="../pt-BR">Português</a></footer>
+  </main>
+</body>
+</html>
