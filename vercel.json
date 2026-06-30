@@ -44,11 +44,11 @@
     },
     {
       "source": "/curriculo",
-      "destination": "/curriculo/pt-BR"
+      "destination": "/curriculo/pt-br"
     },
     {
       "source": "/curriculo/ptbr",
-      "destination": "/curriculo/pt-BR"
+      "destination": "/curriculo/pt-br"
     }
   ],
   "trailingSlash": false
