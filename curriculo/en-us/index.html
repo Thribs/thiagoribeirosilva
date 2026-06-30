@@ -4,75 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thiago Ribeiro Silva — Resume</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    :root{
-      --cor-fundo:#ffffff;
-      --cor-papel:#f6f8fb;
-      --cor-texto:#1a2230;
-      --cor-texto-suave:#5b6678;
-      --cor-destaque:#1f4e8c;          /* azul corporativo (engenharia/aeroespacial) */
-      --cor-destaque-claro:#eaf1fb;
-      --cor-borda:#e2e7ef;
-      --largura-maxima:820px;
-    }
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      background:var(--cor-papel);
-      color:var(--cor-texto);
-      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-    }
-    .folha{
-      max-width:var(--largura-maxima);
-      margin:32px auto;
-      background:var(--cor-fundo);
-      border:1px solid var(--cor-borda);
-      border-radius:12px;
-      padding:48px 52px;
-      box-shadow:0 10px 40px -20px rgba(31,78,140,.25);
-    }
-    /* cabeçalho */
-    .cabecalho{ border-bottom:3px solid var(--cor-destaque); padding-bottom:18px; margin-bottom:22px; }
-    .cabecalho h1{ margin:0; font-size:2.1rem; letter-spacing:-.01em; color:var(--cor-texto); }
-    .cargo{ margin:4px 0 14px; color:var(--cor-destaque); font-weight:600; font-size:1.05rem; }
-    .contato{ display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.9rem; color:var(--cor-texto-suave); }
-    .contato a{ color:var(--cor-texto-suave); text-decoration:none; }
-    .contato a:hover{ color:var(--cor-destaque); }
-    .contato i{ color:var(--cor-destaque); margin-right:5px; }
-    /* seções */
-    section{ margin-top:24px; }
-    section h2{
-      font-size:.82rem; text-transform:uppercase; letter-spacing:.09em;
-      color:var(--cor-destaque); margin:0 0 12px; padding-bottom:6px;
-      border-bottom:1px solid var(--cor-borda);
-    }
-    .resumo{ color:var(--cor-texto); font-size:.98rem; }
-    /* experiência / formação */
-    .item{ margin-bottom:16px; }
-    .item-topo{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; }
-    .item-titulo{ font-weight:700; }
-    .item-org{ color:var(--cor-destaque); font-weight:600; }
-    .item-periodo{ color:var(--cor-texto-suave); font-size:.85rem; white-space:nowrap; }
-    .item ul{ margin:7px 0 0; padding-left:18px; }
-    .item li{ margin:3px 0; font-size:.93rem; }
-    .placeholder{ color:#b03a2e; font-weight:600; }    /* destacar o que falta confirmar */
-    /* habilidades */
-    .grupo-skill{ margin-bottom:8px; font-size:.93rem; }
-    .grupo-skill b{ color:var(--cor-texto); }
-    .linha-curta{ font-size:.93rem; }
-    footer{ margin-top:26px; padding-top:14px; border-top:1px solid var(--cor-borda); font-size:.82rem; color:var(--cor-texto-suave); text-align:center; }
-    /* responsivo */
-    @media (max-width:600px){ .folha{ padding:30px 22px; margin:14px; } .cabecalho h1{ font-size:1.7rem; } }
-    /* impressão / salvar como PDF */
-    @media print{
-      body{ background:#fff; }
-      .folha{ margin:0; border:0; box-shadow:none; border-radius:0; padding:0 8mm; max-width:none; }
-      a{ color:var(--cor-texto) !important; }
-    }
-  </style>
+  <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
   <main class="folha">
@@ -80,11 +12,11 @@
       <h1>Thiago Ribeiro Silva</h1>
       <div class="cargo">Developer · Control &amp; Automation Engineer</div>
       <div class="contato">
-        <span><i class="fas fa-envelope"></i><a href="mailto:thribsilva@gmail.com">thribsilva@gmail.com</a></span>
-        <span><i class="fas fa-globe"></i><a href="https://thiagoribeirosilva.vercel.app" target="_blank" rel="noopener">thiagoribeirosilva.vercel.app</a></span>
-        <span><i class="fas fa-location-dot"></i>São Paulo, Brazil</span>
-        <span><i class="fas fa-phone"></i><span">+55 12 99222-3481</span></span>
-        <span><i class="fab fa-linkedin"></i><span>https://www.linkedin.com/in/thiago-rbsilva/</span></span>
+        <span><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:thribsilva@gmail.com">thribsilva@gmail.com</a></span>
+        <span><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><a href="https://thiagoribeirosilva.vercel.app" target="_blank" rel="noopener">thiagoribeirosilva.vercel.app</a></span>
+        <span><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>São Paulo, Brazil</span>
+        <span><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span">+55 12 99222-3481</span></span>
+        <span><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>https://www.linkedin.com/in/thiago-rbsilva/</span></span>
       </div>
     </header>
 
