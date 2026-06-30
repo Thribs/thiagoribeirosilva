@@ -41,6 +41,14 @@
     {
       "source": "/",
       "destination": "/index"
+    },
+    {
+      "source": "/curriculo",
+      "destination": "/curriculo/pt-BR"
+    },
+    {
+      "source": "/curriculo/ptbr",
+      "destination": "/curriculo/pt-BR"
     }
   ],
   "trailingSlash": false
