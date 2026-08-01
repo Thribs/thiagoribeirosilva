@@ -53,6 +53,10 @@
     {
       "source": "/curriculo/enus",
       "destination": "/curriculo/en-us"
+    },
+    {
+      "source": "/chaveiroemporio",
+      "destination": "/esbocos/emporio_chaveiro_e_celulares"
     }
   ],
   "trailingSlash": false
