@@ -3,31 +3,308 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="esbocos/emporio_chaveiro_e_celulares/local.css" />
-    <script defer src="esbocos/emporio_chaveiro_e_celulares/index.js"></script>
     <title>Empório Chaveiro e Celulares</title>
+    <link
+      rel="stylesheet"
+      href="esbocos/emporio_chaveiro_e_celulares/local.css" />
+    <script defer src="esbocos/emporio_chaveiro_e_celulares/index.js"></script>
+    <script defer src="/analise-visitas.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Locksmith",
+        "name": "Empório Chaveiro e Celulares",
+        "image": "https://dominio/caminho",
+        "url": "https://dominio/",
+        "telephone": "+5562991502178",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Tóquio, qd30 lt5 - Res. Goiania Viva, Goiânia - GO, 74484-426",
+          "addressCountry": "BR"
+        },
+        "areaServed": "Goiânia",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "08:00",
+            "closes": "12:00"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços",
+          "itemListElement": [
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Cópia de chaves residenciais"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Cópia de chaves automotivas"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": { "@type": "Service", "name": "Abertura de casas e veículos" }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": { "@type": "Service", "name": "Gravação de chaves" }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Reparo de fechaduras"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Troca de segredo"
+              }
+            },{
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Reparo de celulares"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Formatação de celulares"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Atualização de celulares"
+              }
+            },{
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Telas"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Capas"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Baterias"
+              }
+            },
+            {
+              "@type": "Service",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Acessórios"
+              }
+            }
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="#inicio">início</a></li>
-      </ul>
-    </nav>
-    <h1>Empório Chaveiro e Celulares</h1>
-    <p>Chaveiro e assistência técnica</p>
-    <ul>
-      <li>cópia de chaves</li>
-      <li>conserto de celulares</li>
-      <li>abertura de casas e veículos</li>
-      <li>telas - capas - fones - bateria - acessórios</li>
-    </ul>
-    <p><a href="https://github.com/thribs">github.com/thribs</a></p>
-    <p><a href="mailto:thribsilva@gmail.com">thribsilva@gmail</a></p>
-    <p><a href="https://wa.me/5562991502178">+55 62 99150-2178</a></p>
+    <header>
+      <nav aria-label="seções">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos_chaveiro">Chaveiro</a></li>
+          <li><a href="#servicos_assistencia">Assistência Técnica</a></li>
+          <li><a href="#avaliacoes">Clientes satisfeitos</a></li>
+          <li><a href="#historia">Nossa história</a></li>
+          <li><a href="#contato">Fale conosco</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="inicio">
+        <h1>Empório Chaveiro e Celulares</h1>
+        <p>Chaveiro e assistência técnica em Goiânia</p>
+      </section>
+      <section id="servicos_chaveiro">
+        <h2>Serviços de chaveiro</h2>
+        <ul>
+          <li>cópia de chaves</li>
+          <li>abertura de casas e veículos</li>
+          <li>gravação</li>
+          <li>reparo de fechaduras</li>
+          <li>troca de segredo</li>
+          <li>codificadas - eletrônicas - portão - magnéticas</li>
+        </ul>
+      </section>
+      <section id="servicos_assistencia">
+        <h2>Assistência técnica</h2>
+        <ul>
+          <li>conserto de celulares</li>
+          <li>atualização</li>
+          <li>formatação</li>
+          <li>telas - capas - fones - baterias - acessórios</li>
+        </ul>
+      </section>
+      <section id="avaliacoes">
+        <h2>Nossos clientes</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.google.com/maps/contrib/114397773177562304797/reviews?hl=pt-BR"
+              target="_blank"
+              rel="noopener noreferrer nofollow">
+              <h3 data-tooltip="ver original">Amanda Torquato</h3>
+            </a>
+            <blockquote
+              data-original="O único lugar em Goiânia que você pode confiar em deixar seu aparelho celular.
+              Rápido na entrega dos serviços prestados.
+              Variedade de capinha e películas .
+              Muito boa a minha experiência ao visitar a loja .">
+              <p>
+                O único em Goiânia em que você pode confiar em deixar seu celular.
+                Rápido na entrega - variedade de capinhas e películas. Muito boa a
+                minha experiência ao visitar a loja.
+              </p>
+            </blockquote>
+            <!-- 
+            Emporio chaveiro e celulares ( chaveiro 24 horas) (owner)
+            3 years ago
+            Prezamos sempre o melhor serviço muito obrigada 😁
+            -->
+          </li>
+          <li>
+            <a
+              href="https://www.google.com/maps/contrib/114397773177562304797/reviews?hl=pt-BR"
+              target="_blank"
+              rel="noopener noreferrer nofollow">
+              <h3 data-tooltip="ver original">Amanda Torquato</h3>
+            </a>
+            <blockquote
+              data-original="O único lugar em Goiânia que você pode confiar em deixar seu aparelho celular.
+              Rápido na entrega dos serviços prestados.
+              Variedade de capinha e películas .
+              Muito boa a minha experiência ao visitar a loja .">
+              <p>
+                O único em Goiânia em que você pode confiar em deixar seu celular.
+                Rápido na entrega - variedade de capinhas e películas. Muito boa a
+                minha experiência ao visitar a loja.
+              </p>
+            </blockquote>
+            <!-- 
+            Emporio chaveiro e celulares ( chaveiro 24 horas) (owner)
+            3 years ago
+            Prezamos sempre o melhor serviço muito obrigada 😁
+            -->
+          </li>
+          <li>
+            <a
+              href="https://www.google.com/maps/contrib/114397773177562304797/reviews?hl=pt-BR"
+              target="_blank"
+              rel="noopener noreferrer nofollow">
+              <h3 data-tooltip="ver original">Amanda Torquato</h3>
+            </a>
+            <blockquote
+              data-original="O único lugar em Goiânia que você pode confiar em deixar seu aparelho celular.
+              Rápido na entrega dos serviços prestados.
+              Variedade de capinha e películas .
+              Muito boa a minha experiência ao visitar a loja .">
+              <p>
+                O único em Goiânia em que você pode confiar em deixar seu celular.
+                Rápido na entrega - variedade de capinhas e películas. Muito boa a
+                minha experiência ao visitar a loja.
+              </p>
+            </blockquote>
+            <!-- 
+            Emporio chaveiro e celulares ( chaveiro 24 horas) (owner)
+            3 years ago
+            Prezamos sempre o melhor serviço muito obrigada 😁
+            -->
+          </li>
+          <li>
+            <a
+              href="https://www.google.com/maps/contrib/114397773177562304797/reviews?hl=pt-BR"
+              target="_blank"
+              rel="noopener noreferrer nofollow">
+              <h3 data-tooltip="ver original">Amanda Torquato</h3>
+            </a>
+            <blockquote
+              data-original="O único lugar em Goiânia que você pode confiar em deixar seu aparelho celular.
+              Rápido na entrega dos serviços prestados.
+              Variedade de capinha e películas .
+              Muito boa a minha experiência ao visitar a loja .">
+              <p>
+                O único em Goiânia em que você pode confiar em deixar seu celular.
+                Rápido na entrega - variedade de capinhas e películas. Muito boa a
+                minha experiência ao visitar a loja.
+              </p>
+            </blockquote>
+            <!-- 
+            Emporio chaveiro e celulares ( chaveiro 24 horas) (owner)
+            3 years ago
+            Prezamos sempre o melhor serviço muito obrigada 😁
+            -->
+          </li>
+        </ul>
+      </section>
+      <section id="historia">
+        <h2>História</h2>
+        <p>
+          Com mais de [3 - preencher] anos de experiência com aberturas e
+          assistência técnica em Goiânia, nos destacamos pelo compromisso com a
+          qualidade e eficiência nos serviços prestados.
+        </p>
+      </section>
+      <section id="contato">
+        <h2>Contato</h2>
+        <p>Aguardamos sua visita. Venha conhecer nossa loja</p>
+        <p>Av. Tóquio, qd30 lt5 - Res. Goiania Viva, Goiânia - GO</p>
+        <p>CEP 74484-426</p>
+        <p><a href="https://wa.me/5562991502178">+55 62 99150-2178</a></p>
+        <p>
+          <a href="https://instagram.com/emporiocelularesofc">
+            @emporiocelularesofc
+          </a>
+        </p>
+      </section>
+    </main>
     <footer>
       <p>
         feito com responsabilidade por
-        <strong><a href="https://thiagoribeirosilva.vercel.app">Thiago Ribeiro Silva</a></strong>
+        <strong>
+          <a href="https://thiagoribeirosilva.vercel.app">
+            Thiago Ribeiro Silva
+          </a>
+        </strong>
       </p>
     </footer>
   </body>
