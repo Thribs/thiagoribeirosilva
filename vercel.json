@@ -57,6 +57,10 @@
     {
       "source": "/chaveiroemporio",
       "destination": "/esbocos/emporio_chaveiro_e_celulares"
+    },
+    {
+      "source": "/lipchaves",
+      "destination": "/esbocos/lip_chaves"
     }
   ],
   "trailingSlash": false

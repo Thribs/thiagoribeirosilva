@@ -1,0 +1,237 @@
+/* Empório Chaveiro e Celulares — estilos da página.
+   Camadas: reset.css (zera tudo) -> global.css (vazio por ora) -> este local.css.
+   Mobile-first: o base é celular; o desktop vem no @media (min-width) lá embaixo. */
+
+/* ---- Fichas de valor (cores, tipografia, medidas) ---- */
+:root {
+  --cor-marca: #0d3b66;          /* azul-marinho: confiança/serviço */
+  --cor-marca-escura: #082a4a;
+  --cor-destaque: #f4a261;       /* âmbar/latão: lembra chave */
+  --cor-whatsapp: #25d366;
+  --cor-fundo: #ffffff;
+  --cor-fundo-suave: #f1f5f9;    /* fundo dos cartões */
+  --cor-texto: #1b2430;
+  --cor-texto-suave: #55606e;
+  --cor-borda: #e2e8f0;
+
+  --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --largura-maxima: 1100px;
+  --espaco-lateral: 1rem;
+  --espaco-secao: 3rem;
+  --raio: 12px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .04);
+}
+
+/* ---- Base: repõe o que o reset zerou (o reset fez font:inherit e não há global) ---- */
+html {
+  scroll-behavior: smooth;       /* rolagem suave nos links da navegação interna */
+}
+
+body {
+  font-family: var(--fonte-base);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+/* Foco visível de teclado — o reset apagou o outline de tudo; repor é acessibilidade */
+:focus-visible {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* "Recipiente": centraliza e dá respiro lateral. O HTML não tem div, então aplico
+   nos três blocos de topo de nível: o conteúdo do cabeçalho, o principal e o rodapé. */
+header > nav,
+main,
+footer {
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+  padding-inline: var(--espaco-lateral);
+}
+
+/* Ritmo vertical entre as seções */
+section {
+  padding-block: var(--espaco-secao);
+  scroll-margin-top: 4.5rem;     /* compensa o cabeçalho fixo ao pular por âncora */
+}
+section + section {
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* ---- Cabeçalho e navegação ---- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--cor-marca);
+  box-shadow: var(--sombra);
+}
+header > nav {
+  padding-block: .75rem;
+}
+header ul {
+  display: flex;
+  flex-wrap: wrap;               /* no celular os itens quebram em linhas */
+  gap: .25rem 1rem;
+  justify-content: center;
+}
+header a {
+  display: block;
+  padding: .35rem .25rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: .95rem;
+}
+header a:hover {
+  color: var(--cor-destaque);
+}
+
+/* ---- Início (chamada principal) ---- */
+#inicio {
+  text-align: center;
+  background: linear-gradient(180deg, var(--cor-fundo-suave), var(--cor-fundo));
+}
+#inicio h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--cor-marca);
+}
+#inicio p {
+  margin-top: .75rem;
+  font-size: 1.1rem;
+  color: var(--cor-texto-suave);
+}
+
+/* ---- Título de cada seção (h2) com barrinha de destaque ---- */
+main h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-marca);
+  margin-bottom: 1.25rem;
+}
+main h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: .4rem;
+  background: var(--cor-destaque);
+  border-radius: 3px;
+}
+
+/* ---- Serviços (chaveiro e assistência): lista vira grade de cartões ---- */
+#servicos_chaveiro ul,
+#servicos_assistencia ul {
+  display: grid;
+  gap: .75rem;                   /* 1 coluna no celular; vira 2/3 no desktop */
+}
+#servicos_chaveiro li,
+#servicos_assistencia li {
+  background: var(--cor-fundo-suave);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-destaque);
+  border-radius: var(--raio);
+  padding: 1rem;
+  font-weight: 500;
+}
+
+/* ---- Avaliações: cada item é um depoimento em cartão ---- */
+#avaliacoes ul {
+  display: grid;
+  gap: 1rem;
+}
+#avaliacoes li {
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+  box-shadow: var(--sombra);
+}
+#avaliacoes h3 {
+  color: var(--cor-marca);
+  font-weight: 700;
+}
+#avaliacoes h3::before {
+  content: "★★★★★";
+  display: block;
+  color: var(--cor-destaque);
+  font-size: .9rem;
+  letter-spacing: 2px;
+  margin-bottom: .25rem;
+}
+#avaliacoes blockquote {
+  margin-top: .5rem;
+  padding-left: .9rem;
+  border-left: 3px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}
+
+/* ---- História: texto corrido, largura de leitura confortável ---- */
+#historia p {
+  max-width: 60ch;
+  color: var(--cor-texto-suave);
+}
+
+/* ---- Contato: endereço + botões de WhatsApp e Instagram ---- */
+#contato p {
+  margin-bottom: .5rem;
+  color: var(--cor-texto-suave);
+}
+/* O link do WhatsApp vira botão (mira o href, não precisa de classe no HTML) */
+#contato a[href^="https://wa.me"] {
+  display: inline-block;
+  margin-top: .5rem;
+  padding: .7rem 1.2rem;
+  background: var(--cor-whatsapp);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: var(--raio);
+}
+#contato a[href^="https://wa.me"]:hover {
+  filter: brightness(.95);
+}
+#contato a[href*="instagram"] {
+  color: var(--cor-marca);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---- Rodapé ---- */
+footer {
+  margin-top: var(--espaco-secao);
+  padding-block: 1.5rem;
+  text-align: center;
+  color: var(--cor-texto-suave);
+  font-size: .9rem;
+}
+footer a {
+  color: var(--cor-marca);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.oculto {
+  display: none;
+}
+
+/* ---- Desktop: grades em colunas e chamada maior (por último, min-width) ---- */
+@media (min-width: 720px) {
+  #inicio {
+    padding-block: 5rem;
+  }
+  #inicio h1 {
+    font-size: 3rem;
+  }
+  #servicos_chaveiro ul,
+  #servicos_assistencia ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #avaliacoes ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
