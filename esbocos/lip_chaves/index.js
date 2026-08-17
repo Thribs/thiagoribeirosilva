@@ -1,26 +1,47 @@
-// verificar se
+if (typeof document === "undefined") {
+  throw new Error(
+    "parâmetro document ausente. Verifique se o programa está sendo executado em navegador de Internet",
+  )
+}
 
 document
   .getElementById("seletorClienteChaveiro")
   .addEventListener("change", function () {
-    const elementoCabecalho = document.querySelector("header")
+    const elementosAlternaveis = []
     const elementosSecao = document.querySelectorAll("section")
-    for (let i = 0; i < elementosSecao.length; i++) {
-      const elemento = elementosSecao[i]
-      const id = elemento.id
-      if (id === "servicos" || id === "avaliacoes") {
-        if (this.checked === true) {
-          elemento.classList.add("oculto")
-        }
-        if (this.checked === false) {
-          elemento.classList.remove("oculto")
-        }
+    const elementosNavegacao = document.querySelectorAll("header nav a")
+    elementosAlternaveis.push([...elementosSecao, ...elementosNavegacao])
+    const elementosExclusivosClienteFinal = []
+    const elementosExclusivosClienteChaveiro = []
+    for (let i = 1; i <= elementosAlternaveis.length; i++) {
+      const elemento = elementosAlternaveis[i - 1]
+      const publicoAlvo = elemento.getAttribute("data-publico-alvo") ?? null
+      if (publicoAlvo === null) {
+        continue
+      }
+      if (publicoAlvo === "cliente final") {
+        elementosExclusivosClienteFinal.push(elemento)
+      }
+      if (publicoAlvo === "chaveiro") {
+        elementosExclusivosClienteChaveiro.push(elemento)
       }
     }
-    if (this.checked === true) {
-      document.querySelector("header").classList.add("oculto")
+    for (let i = 1; i <= elementosExclusivosClienteFinal.length; i++) {
+      const elemento = elementosExclusivosClienteFinal[i - 1]
+      if (this.checked === true) {
+        elemento.classList.remove("oculto")
+      }
+      if (this.checked === false) {
+        elemento.classList.add("oculto")
+      }
     }
-    if (this.checked === false) {
-      document.querySelector("header").classList.remove("oculto")
+    for (let i = 1; i <= elementosExclusivosClienteChaveiro.length; i++) {
+      const elemento = elementosExclusivosClienteChaveiro[i - 1]
+      if (this.checked === true) {
+        elemento.classList.add("oculto")
+      }
+      if (this.checked === false) {
+        elemento.classList.remove("oculto")
+      }
     }
   })

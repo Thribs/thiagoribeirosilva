@@ -151,16 +151,17 @@
       <label for="seletorClienteChaveiro">SOU CHAVEIRO</label>
       <nav aria-label="seções">
         <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#avaliacoes">Clientes satisfeitos</a></li>
-          <li><a href="#historia">Nossa história</a></li>
-          <li><a href="#contato">Fale conosco</a></li>
+          <li><a href="#inicio" data-publico-alvo=null>Início</a></li>
+          <li><a href="#servicos" data-publico-alvo="cliente final">Serviços</a></li>
+          <li><a href="#avaliacoes" data-publico-alvo="cliente final">Clientes satisfeitos</a></li>
+          <li><a href="#historia" data-publico-alvo="chaveiro">Nossa história</a></li>
+          <li><a href="#produtos" data-publico-alvo="chaveiro">Produtos</a></li>
+          <li><a href="#contato" data-publico-alvo="chaveiro">Fale conosco</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <section id="inicio">
+      <section id="inicio" data-publico-alvo=null>
         <h1>Lip Chaves</h1>
         <p>
           Chaveiro automotivo e residencial - cutelaria - materiais para
@@ -168,7 +169,7 @@
         </p>
         <p>Rio de Janeiro - RJ</p>
       </section>
-      <section id="servicos">
+      <section id="servicos" data-publico-alvo="cliente final">
         <h2>Serviços de chaveiro</h2>
         <ul>
           <li>cópia de chaves</li>
@@ -178,7 +179,7 @@
           <li>afiação de ferramentas</li>
         </ul>
       </section>
-      <section id="avaliacoes">
+      <section id="avaliacoes" data-publico-alvo="cliente final">
         <h2>Nossos clientes</h2>
         <ul>
           <li>
@@ -273,7 +274,7 @@
           </li>
         </ul>
       </section>
-      <section id="historia">
+      <section id="historia" data-publico-alvo="chaveiro">
         <h2>História</h2>
         <p>
           Sou o Marcelo. Há 32 anos trabalho como chaveiro. Aprendi a profissão
@@ -292,7 +293,7 @@
           máquinas e sempre crescente experiência para atender cada vez melhor.
         </p>
       </section>
-      <section id="produtos">
+      <section id="produtos" data-publico-alvo="chaveiro">
         <h2>Produtos para chaveiros</h2>
         <ul>
           <li>Lâminas</li>
@@ -301,7 +302,7 @@
           <li>Fresas</li>
         </ul>
       </section>
-      <section id="contato">
+      <section id="contato" data-publico-alvo="chaveiro">
         <h2>Contato</h2>
         <p>Aguardamos sua visita. Venha conhecer nossa loja</p>
         <p>R. Codó, 740 - Padre Miguel, Rio de Janeiro - RJ</p>
