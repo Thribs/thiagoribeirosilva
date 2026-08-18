@@ -1,25 +1,25 @@
-/* Empório Chaveiro e Celulares — estilos da página.
+/* Lip Chaves — estilos da página.
    Camadas: reset.css (zera tudo) -> global.css (vazio por ora) -> este local.css.
    Mobile-first: o base é celular; o desktop vem no @media (min-width) lá embaixo. */
 
 /* ---- Fichas de valor (cores, tipografia, medidas) ---- */
 :root {
-  --cor-marca: #0d3b66;          /* azul-marinho: confiança/serviço */
-  --cor-marca-escura: #082a4a;
-  --cor-destaque: #f4a261;       /* âmbar/latão: lembra chave */
-  --cor-whatsapp: #25d366;
-  --cor-fundo: #ffffff;
-  --cor-fundo-suave: #f1f5f9;    /* fundo dos cartões */
-  --cor-texto: #1b2430;
-  --cor-texto-suave: #55606e;
-  --cor-borda: #e2e8f0;
+  /* Paleta preto e branco: minimalista e elegante */
+  --cor-preto: #000000;              /* preto pleno: destaques e cabeçalho */
+  --cor-fundo: #ffffff;              /* branco: fundo principal */
+  --cor-fundo-suave: #fafafa;        /* cinza quase-branco: fundo dos cartões */
+  --cor-texto: #1a1a1a;              /* quase-preto: corpo de texto */
+  --cor-texto-suave: #666666;        /* cinza médio: texto secundário */
+  --cor-borda: #e5e5e5;              /* cinza claro: linhas finas e bordas */
+  --cor-borda-forte: #111111;        /* quase-preto: detalhes marcantes */
+  --cor-branco: #ffffff;
 
+  --fonte-titulo: Georgia, "Times New Roman", "Times", serif;   /* serifada elegante nos títulos */
   --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --largura-maxima: 1100px;
   --espaco-lateral: 1rem;
-  --espaco-secao: 3rem;
-  --raio: 12px;
-  --sombra: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .04);
+  --espaco-secao: 4rem;
+  --raio: 2px;                       /* cantos quase retos: mais sóbrio */
 }
 
 /* ---- Base: repõe o que o reset zerou (o reset fez font:inherit e não há global) ---- */
@@ -30,16 +30,16 @@ html {
 body {
   font-family: var(--fonte-base);
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--cor-texto);
   background: var(--cor-fundo);
 }
 
 /* Foco visível de teclado — o reset apagou o outline de tudo; repor é acessibilidade */
 :focus-visible {
-  outline: 3px solid var(--cor-destaque);
+  outline: 2px solid var(--cor-preto);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 /* "Recipiente": centraliza e dá respiro lateral. O HTML não tem div, então aplico
@@ -55,118 +55,194 @@ footer {
 /* Ritmo vertical entre as seções */
 section {
   padding-block: var(--espaco-secao);
-  scroll-margin-top: 4.5rem;     /* compensa o cabeçalho fixo ao pular por âncora */
+  scroll-margin-top: 5.5rem;     /* compensa o cabeçalho fixo ao pular por âncora */
 }
 section + section {
   border-top: 1px solid var(--cor-borda);
 }
 
-/* ---- Cabeçalho e navegação ---- */
+/* ---- Cabeçalho e navegação (preto pleno com texto branco) ---- */
 header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--cor-marca);
-  box-shadow: var(--sombra);
+  background: var(--cor-preto);
 }
 header > nav {
-  padding-block: .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  padding-block: .85rem;
 }
 header ul {
   display: flex;
   flex-wrap: wrap;               /* no celular os itens quebram em linhas */
-  gap: .25rem 1rem;
+  gap: .25rem 1.25rem;
   justify-content: center;
 }
 header a {
   display: block;
-  padding: .35rem .25rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: .95rem;
+  padding: .35rem .1rem;
+  color: var(--cor-branco);
+  font-weight: 500;
+  font-size: .9rem;
+  letter-spacing: .02em;
+  border-bottom: 1px solid transparent;
 }
 header a:hover {
-  color: var(--cor-destaque);
+  border-bottom-color: var(--cor-branco);
+}
+
+/* ---- Interruptor de público-alvo (Cliente / Chaveiro) ----
+   O checkbox nativo é escondido; o próprio <label> vira uma pílula deslizante.
+   Desmarcado = "Cliente"; marcado (:checked) = "Chaveiro". */
+#seletorClienteChaveiro {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+label[for="seletorClienteChaveiro"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: .25rem;
+  font-size: 0;                  /* esconde o texto "SOU CHAVEIRO" cru do HTML */
+  background: transparent;
+  border: 1px solid var(--cor-branco);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+}
+/* Os dois rótulos do interruptor são gerados via ::before e ::after */
+label[for="seletorClienteChaveiro"]::before,
+label[for="seletorClienteChaveiro"]::after {
+  display: inline-block;
+  padding: .4rem 1rem;
+  font-family: var(--fonte-base);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  border-radius: 999px;
+  transition: background .18s ease, color .18s ease;
+}
+label[for="seletorClienteChaveiro"]::before {
+  content: "CLIENTE";
+  background: var(--cor-branco);   /* estado inicial: Cliente ativo */
+  color: var(--cor-preto);
+}
+label[for="seletorClienteChaveiro"]::after {
+  content: "CHAVEIRO";
+  background: transparent;
+  color: var(--cor-branco);
+}
+/* Marcado: inverte — Chaveiro passa a ser o ativo */
+#seletorClienteChaveiro:checked + label[for="seletorClienteChaveiro"]::before {
+  background: transparent;
+  color: var(--cor-branco);
+}
+#seletorClienteChaveiro:checked + label[for="seletorClienteChaveiro"]::after {
+  background: var(--cor-branco);
+  color: var(--cor-preto);
+}
+/* Foco de teclado no interruptor */
+#seletorClienteChaveiro:focus-visible + label[for="seletorClienteChaveiro"] {
+  outline: 2px solid var(--cor-branco);
+  outline-offset: 2px;
 }
 
 /* ---- Início (chamada principal) ---- */
 #inicio {
   text-align: center;
-  background: linear-gradient(180deg, var(--cor-fundo-suave), var(--cor-fundo));
+  background: var(--cor-fundo);
+}
+/* Logo da marca (P&B transparente sobre fundo branco) */
+.logo-marca {
+  display: block;
+  max-width: 180px;
+  height: auto;
+  margin: 0 auto 1.5rem;
 }
 #inicio h1 {
-  font-size: 2rem;
-  font-weight: 800;
+  font-family: var(--fonte-titulo);
+  font-size: 2.25rem;
+  font-weight: 700;
   line-height: 1.15;
-  color: var(--cor-marca);
+  letter-spacing: .01em;
+  color: var(--cor-preto);
 }
 #inicio p {
-  margin-top: .75rem;
+  margin-top: 1rem;
   font-size: 1.1rem;
   color: var(--cor-texto-suave);
 }
 
-/* ---- Título de cada seção (h2) com barrinha de destaque ---- */
+/* ---- Título de cada seção (h2) com filete de destaque ---- */
 main h2 {
-  font-size: 1.5rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--cor-marca);
-  margin-bottom: 1.25rem;
+  color: var(--cor-preto);
+  margin-bottom: 1.5rem;
 }
 main h2::after {
   content: "";
   display: block;
-  width: 2.5rem;
-  height: 3px;
-  margin-top: .4rem;
-  background: var(--cor-destaque);
-  border-radius: 3px;
+  width: 3rem;
+  height: 1px;
+  margin-top: .6rem;
+  background: var(--cor-preto);
 }
 
-/* ---- Serviços (chaveiro e assistência): lista vira grade de cartões ---- */
-#servicos_chaveiro ul,
-#servicos_assistencia ul {
+/* ---- Serviços e Produtos: lista vira grade de cartões ---- */
+#servicos ul,
+#produtos ul {
   display: grid;
-  gap: .75rem;                   /* 1 coluna no celular; vira 2/3 no desktop */
+  gap: 1rem;                     /* 1 coluna no celular; vira 2/3 no desktop */
 }
-#servicos_chaveiro li,
-#servicos_assistencia li {
+#servicos li,
+#produtos li {
   background: var(--cor-fundo-suave);
   border: 1px solid var(--cor-borda);
-  border-left: 4px solid var(--cor-destaque);
+  border-left: 2px solid var(--cor-preto);
   border-radius: var(--raio);
-  padding: 1rem;
+  padding: 1.1rem;
   font-weight: 500;
 }
 
 /* ---- Avaliações: cada item é um depoimento em cartão ---- */
 #avaliacoes ul {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 #avaliacoes li {
   background: var(--cor-fundo);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
-  padding: 1.25rem;
-  box-shadow: var(--sombra);
+  padding: 1.5rem;
 }
 #avaliacoes h3 {
-  color: var(--cor-marca);
+  font-family: var(--fonte-titulo);
+  color: var(--cor-preto);
   font-weight: 700;
 }
 #avaliacoes h3::before {
   content: "★★★★★";
   display: block;
-  color: var(--cor-destaque);
-  font-size: .9rem;
-  letter-spacing: 2px;
-  margin-bottom: .25rem;
+  color: var(--cor-preto);
+  font-size: .85rem;
+  letter-spacing: 3px;
+  margin-bottom: .4rem;
 }
 #avaliacoes blockquote {
-  margin-top: .5rem;
-  padding-left: .9rem;
-  border-left: 3px solid var(--cor-borda);
+  margin-top: .6rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--cor-borda);
   color: var(--cor-texto-suave);
   font-style: italic;
 }
@@ -175,6 +251,9 @@ main h2::after {
 #historia p {
   max-width: 60ch;
   color: var(--cor-texto-suave);
+}
+#historia p + p {
+  margin-top: 1rem;
 }
 
 /* ---- Contato: endereço + botões de WhatsApp e Instagram ---- */
@@ -186,33 +265,36 @@ main h2::after {
 #contato a[href^="https://wa.me"] {
   display: inline-block;
   margin-top: .5rem;
-  padding: .7rem 1.2rem;
-  background: var(--cor-whatsapp);
-  color: #ffffff;
-  font-weight: 700;
+  padding: .7rem 1.4rem;
+  background: var(--cor-preto);
+  color: var(--cor-branco);
+  font-weight: 600;
+  letter-spacing: .02em;
   border-radius: var(--raio);
 }
 #contato a[href^="https://wa.me"]:hover {
-  filter: brightness(.95);
+  background: var(--cor-texto);
 }
 #contato a[href*="instagram"] {
-  color: var(--cor-marca);
+  color: var(--cor-preto);
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ---- Rodapé ---- */
 footer {
   margin-top: var(--espaco-secao);
-  padding-block: 1.5rem;
+  padding-block: 2rem;
   text-align: center;
   color: var(--cor-texto-suave);
   font-size: .9rem;
 }
 footer a {
-  color: var(--cor-marca);
+  color: var(--cor-preto);
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .oculto {
@@ -222,13 +304,16 @@ footer a {
 /* ---- Desktop: grades em colunas e chamada maior (por último, min-width) ---- */
 @media (min-width: 720px) {
   #inicio {
-    padding-block: 5rem;
+    padding-block: 6rem;
+  }
+  .logo-marca {
+    max-width: 220px;
   }
   #inicio h1 {
     font-size: 3rem;
   }
-  #servicos_chaveiro ul,
-  #servicos_assistencia ul {
+  #servicos ul,
+  #produtos ul {
     grid-template-columns: repeat(3, 1fr);
   }
   #avaliacoes ul {
